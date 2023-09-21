@@ -1,0 +1,28 @@
+.comments-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.comments-item {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #fff;
+}
+.comments-color {
+  width: 50px;
+  height: 50px;
+}
+.comments-text {
+  padding: 0 0 0 10px;
+}
+.comments-text p {
+  font-size: 16px;
+  color: #212529;
+}

@@ -1,0 +1,23 @@
+.asideBar {
+  min-height: 100vh;
+  height: 100%;
+  max-width: 600px;
+  background-color: #2b2f3e;
+  padding: 10px;
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+}
+.asideBar__title {
+  text-transform: uppercase;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+}
+.asideBar__text {
+  margin-top: 5px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.6em;
+  color: #5b5d63;
+}
