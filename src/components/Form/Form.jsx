@@ -1,29 +1,19 @@
-import { useDispatch, useSelector } from "react";
-import { useState } from "react";
-import {
-  addUser,
-  addCommentToUser,
-  setActiveUser,
-} from "../users/usersSlice";
-
+import React, { useState } from "react";
 import "./Form.css";
 
 function generateRandomNumber() {
   const min = 10000000;
   const max = 99999999;
   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-
   return randomNumber;
 }
 
-export function Form({ type }) {
+export function Form({ type, onCreate }) {
   const [name, setName] = useState("");
   const [color, setColor] = useState("#000000");
   const [comment, setComment] = useState("");
-  const { users, activeUserId } = useSelector((state) => state.users);
-  const dispatch = useDispatch();
-
-  const inputChange = (event) => {
+  
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     switch (name) {
       case "name":
@@ -39,46 +29,21 @@ export function Form({ type }) {
         break;
     }
   };
-  const resetForm = () => {
-    setName("");
-    setColor("#000000");
-    setComment("");
-  };
-  const handleSubmit = (event) => {
+
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
     if (type === "user") {
-      const newUser = {
-        id: generateRandomNumber(),
-        name: name,
-        comments: [],
-      };
-      dispatch(addUser(newUser));
-      dispatch(setActiveUser(newUser.id));
+      onCreate(name);
+      setName("");
     } else {
-      if (users.length === 0) {
-        return;
-      }
-
-      const selectedUser = users.find((user) => user.id === activeUserId);
-      const newComment = {
-        id: generateRandomNumber(),
-        comment: comment,
-        color: color,
-      };
-
-      dispatch(
-        addCommentToUser({
-          userId: selectedUser.id,
-          comment: newComment,
-        })
-      );
+      onCreate(comment, color);
+      setComment("");
     }
-    resetForm();
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleFormSubmit}>
       {type === "user" ? (
         <>
           <input
@@ -86,8 +51,8 @@ export function Form({ type }) {
             placeholder="Type name here..."
             type="text"
             name="name"
-            onChange={inputChange}
             value={name}
+            onChange={handleInputChange}
             required
           />
           <button className="form-button" type="submit">
@@ -98,18 +63,18 @@ export function Form({ type }) {
         <>
           <input
             className="form-color"
-            onChange={inputChange}
-            value={color}
             type="color"
             name="color"
+            value={color}
+            onChange={handleInputChange}
             required
           />
           <textarea
             className="form-textarea"
             placeholder="Type comment here..."
             name="comment"
-            onChange={inputChange}
             value={comment}
+            onChange={handleInputChange}
             required
           />
           <button className="form-button form-button-big" type="submit">
