@@ -1,18 +1,15 @@
 import "./UserList.css";
 import React from "react";
 import { useDispatch } from "react";
-import { deleteUser, setActiveUser } from "../Block/Block";
+import { setActiveUser } from "../Form/Form";
 
-export function UserList({ users, activeUser }) {
+export function UserList({ users, activeUser, onDeleteUser }) {
   const dispatch = useDispatch();
-  const handleDeleteUser = (userId, e) => {
-    e.stopPropagation();
-    dispatch(deleteUser(userId));
-  };
 
   const handleItemClick = (userId) => {
     dispatch(setActiveUser(userId));
   };
+
   return (
     <ul className="user-list">
       {users.map(({ name, id, comments }) => {
@@ -29,7 +26,7 @@ export function UserList({ users, activeUser }) {
               </div>
               <button
                 className="user-btn"
-                onClick={(e) => handleDeleteUser(id, e)}
+                onClick={(e) => onDeleteUser(id)}
               >
                 Delete
               </button>

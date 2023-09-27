@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { CommentsList } from "../CommentsList/CommentsList";
 import { UserList } from "../UserList/UserList";
 import { Form } from "../Form/Form";
-import {generateRandomNumber} from "../Form/Form"
+import { generateRandomNumber } from "../Form/Form";
 import "./Block.css";
-
 
 export function Block({ type }) {
   const [users, setUsers] = useState(() => {
