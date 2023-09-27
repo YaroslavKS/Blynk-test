@@ -1,7 +1,7 @@
 import "./UserList.css";
 import React from "react";
 import { useDispatch } from "react";
-import { deleteUser, setActiveUser } from "../users/usersSlice";
+import { deleteUser, setActiveUser } from "../Block/Block";
 
 export function UserList({ users, activeUser }) {
   const dispatch = useDispatch();

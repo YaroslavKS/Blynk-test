@@ -1,10 +1,12 @@
 import {initialData} from './service/initialData'
-import Aside from './components/Aside/Aside';
-import { PageContent } from './components/PageContent/PageContent';
 import { useLocalStorage } from './service/useLocalStorage';
 import { useState } from 'react';
 import { ItemsContext } from './service/ItemsContext';
-import './App.scss';
+import { AsideBar } from './components/AsideBar/AsideBar';
+import { Block } from './components/Block/Block';
+import { CommentsList } from './components/CommentsList/CommentsList';
+import { Form } from './components/Form/Form';
+import { UserList } from './components/UserList/UserList';
 
 
 function App() {
@@ -71,8 +73,11 @@ function App() {
           addNewItem,
           addNewComment
         }}>
-          <Aside />
-          <PageContent />
+        <UserList/>
+        <Form/>
+        <CommentsList/>
+        <Block/>
+        <AsideBar/>
         </ItemsContext.Provider>
       </div>
     </div>
